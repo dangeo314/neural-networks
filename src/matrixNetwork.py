@@ -11,7 +11,7 @@ def cost_derivative(a, ans):
 
 def sigmoid_prime(z):
     return sigmoid(z)*(1-sigmoid(z))
-backpropCt=0
+
 
 
 class Network(object):
@@ -35,16 +35,13 @@ class Network(object):
             for mini_batch in mini_batches:
                 self.descend_step(mini_batch, eta)
             if test_data:
-                print "Epoch {0}: {1} / {2}".format(
-                    j, self.evaluate(test_data), n_test)
+                print("Epoch {0}: {1} / {2}".format(
+                    j, self.evaluate(test_data), n_test))
             else:
-                print "Epoch {0} complete".format(j)
-        print "backpropCt = {}".format(backpropCt)
+                print("Epoch {0} complete".format(j))
 
     def descend_step(self, mini_batch,eta):
         grad_b, grad_w= self.backprop(mini_batch)
-        global backpropCt
-        backpropCt =  backpropCt +1
         for l in range(0, self.layerCount-1):
             """print "adjusted minibatch before b: {} w:{} ".format(
                 self.biases[l].shape, self.weights[l].shape)"""
